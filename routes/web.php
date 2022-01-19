@@ -16,3 +16,32 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+
+    $router->get('authors', [
+        'as' => 'authors.index',
+        'uses' => 'AuthorController@index'
+    ]);
+
+    $router->get('authors/{id}', [
+        'as' => 'authors.show',
+        'uses' => 'AuthorController@show'
+    ]);
+
+    $router->post('authors', [
+        'as' => 'authors.store',
+        'uses' => 'AuthorController@store'
+    ]);
+
+    $router->put('authors/{id}', [
+        'as' => 'authors.update',
+        'uses' => 'AuthorController@update'
+    ]);
+
+    $router->delete('authors/{id}', [
+        'as' => 'authors.destroy',
+        'uses' => 'AuthorController@destroy'
+    ]);
+
+});
